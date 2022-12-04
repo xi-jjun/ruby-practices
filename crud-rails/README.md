@@ -135,6 +135,47 @@ end
 
 <br>
 
+## Patch-/members/1
+
+`routes.rb`에 patch url request 매핑 해주고, `member_controller.rb`에 관련 기능 추가.
+
+```ruby
+Rails.application.routes.draw do
+  get '/members/:id' => 'member#show'
+  post '/members' => 'member#create'
+  patch '/members/:id' => 'member#update'
+end
+```
+
+```ruby
+class MemberController < ApplicationController
+  def show
+    ...
+  end
+
+  def create
+    ...
+  end
+
+  def update
+    member = Member.find(params[:id])
+    member.name = params[:name]
+    member.age = params[:age]
+    member.description = params[:description]
+
+    member.save
+
+    render json: { "message" => "success to update member id=#{params[:id]}" }
+  end
+end
+```
+
+`update` method를 추가.
+
+<br>
+
+
+
 
 
 
