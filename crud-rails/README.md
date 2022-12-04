@@ -135,7 +135,7 @@ end
 
 <br>
 
-## Patch-/members/1
+## PATCH-/members/1
 
 `routes.rb`에 patch url request 매핑 해주고, `member_controller.rb`에 관련 기능 추가.
 
@@ -174,9 +174,42 @@ end
 
 <br>
 
+## DELETE-/members/1
 
+```ruby
+Rails.application.routes.draw do
+  get '/members/:id' => 'member#show'
+  post '/members' => 'member#create'
+  patch '/members/:id' => 'member#update'
+  delete '/members/:id' => 'member#delete'
+end
+```
 
+```ruby
+class MemberController < ApplicationController
+  def show
+    ...
+  end
 
+  def create
+    ...
+  end
+
+  def update
+    ...
+  end
+
+  def delete
+    member = Member.find(params[:id])
+    member.delete
+
+    render json: { "message" => "success to remove member id=#{params[:id]}" }
+  end
+end
+
+```
+
+<br>
 
 
 
