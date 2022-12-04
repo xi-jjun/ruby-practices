@@ -37,6 +37,57 @@ end
 
 <br>
 
+## POST-/members
+
+`member`회원 한 명을 추가하는 연습.
+
+```shell
+rails g controller member
+```
+
+`member controller` 추가.
+
+```ruby
+class MemberController < ApplicationController
+  def create
+    member = Member.create(name: params[:name], age: params[:age], description: params[:description])
+    member.save
+
+    render json: { "message" => "success to save" }
+  end
+end
+```
+
+```ruby
+Rails.application.routes.draw do
+  post '/members' => 'member#create'
+end
+```
+
+`routes.rb` file에 관련 api url mapping.
+
+그러나 POST request에 대해 다음과 같은 오류 발생
+
+```shell
+...
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+...
+```
+
+[stackoverflow](https://stackoverflow.com/questions/35181340/rails-cant-verify-csrf-token-authenticity-when-making-a-post-request)에서 이러한 질문이 있었고 해결.
+
+```ruby
+# application_controller.rb
+class ApplicationController < ActionController::API
+end
+```
+
+`application_controller.rb` file에서 `ActionController::Base` → `ActionController::API`로 변경하여 해결.
+
+<br>
+
+
+
 
 
 ## Reference
@@ -45,3 +96,4 @@ end
 
 [database migration - rails official guide](https://guides.rubyonrails.org/getting_started.html#database-migrations)
 
+[rails CSRF problem - stackoverflow](https://stackoverflow.com/questions/35181340/rails-cant-verify-csrf-token-authenticity-when-making-a-post-request)
