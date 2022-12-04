@@ -10,4 +10,15 @@ class MemberController < ApplicationController
 
     render json: { "message" => "success to save" }
   end
+
+  def update
+    member = Member.find(params[:id])
+    member.name = params[:name]
+    member.age = params[:age]
+    member.description = params[:description]
+
+    member.save
+
+    render json: { "message" => "success to update member id=#{params[:id]}" }
+  end
 end
