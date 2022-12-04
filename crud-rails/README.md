@@ -86,6 +86,55 @@ end
 
 <br>
 
+## GET-/members/1
+
+이미 존재하던 데이터.(아까 위에서 보냈던 post request)
+
+```json
+{
+    "name" : "kim jae jun",
+    "description" : "안녕하세요 저는 김재준이라고 합니다. ~~~~~~~~~~very very long self introduction",
+    "age" : 26
+}
+```
+
+member controller에 get 관련 기능 추가, `routes.rb`에 라우팅.
+
+```ruby
+Rails.application.routes.draw do
+  get '/members/:id' => 'member#show'
+  post '/members' => 'member#create'
+end
+```
+
+```ruby
+class MemberController < ApplicationController
+  def show
+    member = Member.find(params[:id])
+    render json: member
+  end
+
+  def create
+    ...
+  end
+end
+```
+
+`GET-/members/1`결과
+
+```json
+{
+    "id": 1,
+    "name": "kim jae jun",
+    "age": 26,
+    "description": "안녕하세요 저는 김재준이라고 합니다. ~~~~~~~~~~very very long self introduction",
+    "created_at": "2022-12-04T05:36:04.215Z",
+    "updated_at": "2022-12-04T05:36:04.215Z"
+}
+```
+
+<br>
+
 
 
 
