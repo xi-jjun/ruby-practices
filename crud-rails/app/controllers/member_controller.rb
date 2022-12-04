@@ -21,4 +21,11 @@ class MemberController < ApplicationController
 
     render json: { "message" => "success to update member id=#{params[:id]}" }
   end
+
+  def delete
+    member = Member.find(params[:id])
+    member.delete
+
+    render json: { "message" => "success to remove member id=#{params[:id]}" }
+  end
 end

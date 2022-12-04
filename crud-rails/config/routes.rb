@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get '/members/:id' => 'member#show'
   post '/members' => 'member#create'
   patch '/members/:id' => 'member#update'
+  delete '/members/:id' => 'member#delete'
 end
