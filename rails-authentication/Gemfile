@@ -6,6 +6,12 @@ ruby "2.7.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
+# user authentication
+gem 'devise'
+
+# Role management library with resource scoping
+gem 'rolify'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
