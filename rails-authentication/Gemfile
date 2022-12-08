@@ -12,6 +12,9 @@ gem 'devise'
 # Role management library with resource scoping
 gem 'rolify'
 
+# user authorization
+gem 'cancancan'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
